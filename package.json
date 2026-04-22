@@ -35,7 +35,7 @@
   "description": "Play and chat smarter with BetterChatGPT - an amazing open-source web app with a better UI for exploring OpenAI's ChatGPT API!",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node sortModelsJsonKeys.js && tsc && vite build && vite build --mode custom --outDir dist-custom",
     "preview": "vite preview",
     "electron": "concurrently -k \"BROWSER=none yarn dev\" \"wait-on tcp:5173 && electron .\"",
     "pack": "yarn build && electron-builder --dir",

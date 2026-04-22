@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+dist-custom
 dist-ssr
 *.local
 
@@ -26,4 +27,5 @@ dist-ssr
 release/
 
 .env
+.env.*
 models.json
