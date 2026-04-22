@@ -223,49 +223,6 @@ export const loadModels = async (): Promise<{
     modelDisplayNames[modelId] = modelId;
   });
 
-  // Sort modelOptions to prioritize gpt-4.5 models at the top, followed by custom models, gpt-4o models, o1 models, and then other OpenAI models
-  modelOptions.sort((a, b) => {
-    const isCustomA = customModels.some(m => m.id === a);
-    const isCustomB = customModels.some(m => m.id === b);
-    const isGpt45A = a.includes('gpt-4.');
-    const isGpt45B = b.includes('gpt-4.');
-    const isGpt4oA = a.startsWith('gpt-4o');
-    const isGpt4oB = b.startsWith('gpt-4o');
-    const isO3A = a.startsWith('o3-');
-    const isO3B = b.startsWith('o3-');
-    const isO1A = a.startsWith('o1-');
-    const isO1B = b.startsWith('o1-');
-    const isOpenAIA = a.startsWith('gpt-');
-    const isOpenAIB = b.startsWith('gpt-');
-
-    // Prioritize gpt-4.5 models
-    if (isGpt45A && !isGpt45B) return -1;
-    if (!isGpt45A && isGpt45B) return 1;
-
-    // Then prioritize custom models
-    if (isCustomA && !isCustomB) return -1;
-    if (!isCustomA && isCustomB) return 1;
-
-    // If both are custom or neither, prioritize gpt-4o models
-    if (isGpt4oA && !isGpt4oB) return -1;
-    if (!isGpt4oA && isGpt4oB) return 1;
-
-    // If both are gpt-4o or neither, prioritize o3 models
-    if (isO3A && !isO3B) return -1;
-    if (!isO3A && isO3B) return 1;
-
-    // If both are o3 or neither, prioritize o1 models
-    if (isO1A && !isO1B) return -1;
-    if (!isO1A && isO1B) return 1;
-
-    // If both are o1 or neither, prioritize other OpenAI models
-    if (isOpenAIA && !isOpenAIB) return -1;
-    if (!isOpenAIA && isOpenAIB) return 1;
-
-    // If both are the same type or neither, maintain original order
-    return 0;
-  });
-
   return {
     modelOptions,
     modelMaxToken,
