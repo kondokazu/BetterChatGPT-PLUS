@@ -1,6 +1,6 @@
 import { StoreSlice } from './store';
 import { Theme } from '@type/theme';
-import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth, defaultModel, _defaultImageDetail, _defaultDisplayChatSize } from '@constants/chat';
+import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth, defaultTitleModel, _defaultImageDetail, _defaultDisplayChatSize } from '@constants/chat';
 import { ConfigInterface, ImageDetail, TotalTokenUsed } from '@type/chat';
 import { ModelOptions } from '@utils/modelReader';
 
@@ -49,7 +49,7 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
   hideMenuOptions: false,
   hideSideMenu: false,
   autoTitle: false,
-  titleModel: defaultModel,
+  titleModel: defaultTitleModel,
   enterToSubmit: true,
   advancedMode: true,
   defaultChatConfig: _defaultChatConfig,

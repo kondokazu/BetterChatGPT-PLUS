@@ -4,6 +4,7 @@ import { shallow } from 'zustand/shallow';
 
 import countTokens from '@utils/messageUtils';
 import { modelCost } from '@constants/modelLoader';
+import { defaultModel } from '@constants/chat';
 import { TotalTokenUsed, isTextContent, isImageContent } from '@type/chat';
 import { ModelOptions } from '@utils/modelReader';
 
@@ -44,7 +45,7 @@ const TokenCount = React.memo(() => {
   const model = useStore((state) =>
     state.chats
       ? state.chats[state.currentChatIndex].config.model
-      : 'gpt-3.5-turbo'
+      : defaultModel
   );
 
   const cost = useMemo(() => {

@@ -9,7 +9,7 @@ import {
 import { getChatCompletion, getChatCompletionStream } from '@api/api';
 import { parseEventSource } from '@api/helper';
 import { limitMessageTokens, updateTotalTokenUsed } from '@utils/messageUtils';
-import { _defaultChatConfig } from '@constants/chat';
+import { _defaultChatConfig, defaultTitleModel } from '@constants/chat';
 import { officialAPIEndpoint } from '@constants/auth';
 import { modelStreamSupport } from '@constants/modelLoader';
 
@@ -37,7 +37,7 @@ const useSubmit = () => {
         }
         const titleChatConfig = {
           ..._defaultChatConfig, // Spread the original config
-          model: useStore.getState().titleModel ?? _defaultChatConfig.model, // Override the model property
+          model: useStore.getState().titleModel ?? defaultTitleModel, // Override the model property
         };
         // other endpoints
         data = await getChatCompletion(
@@ -51,7 +51,7 @@ const useSubmit = () => {
       } else if (apiKey) {
         const titleChatConfig = {
           ...modelConfig, // Spread the original config
-          model: useStore.getState().titleModel ?? modelConfig.model, // Override the model property
+          model: useStore.getState().titleModel ?? defaultTitleModel, // Override the model property
         };
         // own apikey
         data = await getChatCompletion(
