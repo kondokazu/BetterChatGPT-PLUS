@@ -94,7 +94,7 @@ export const loadModels = async (): Promise<{
     if (parseFloat(model.pricing.image) > 0 || (inputModality && inputModality.length >= 1 && inputModality[0].includes('image'))) {
       modelTypes[modelId] = 'image';
       modelCost[modelId].image = {
-        price: parseFloat(model.pricing.image),
+        price: parseFloat(model.pricing.image) > 0 ? parseFloat(model.pricing.image) : parseFloat(model.pricing.prompt),
         unit: 1,
       };
     } else {
