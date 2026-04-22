@@ -29,6 +29,8 @@ import {
 
 import { codeLanguageSubset } from '@constants/chat';
 
+import { copyToClipboard } from '@utils/clipboard';
+
 import RefreshButton from './Button/RefreshButton';
 import UpButton from './Button/UpButton';
 import DownButton from './Button/DownButton';
@@ -109,7 +111,7 @@ const ContentView = memo(
     };
     const currentTextContent = isTextContent(content[0]) ? content[0].text : '';
     const handleCopy = () => {
-      navigator.clipboard.writeText(currentTextContent);
+      copyToClipboard(currentTextContent);
     };
 
     const handleImageClick = (imageUrl: string) => {

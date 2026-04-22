@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import CopyIcon from '@icon/CopyIcon';
 import TickIcon from '@icon/TickIcon';
 
+import { copyToClipboard } from '@utils/clipboard';
+
 const CodeBlock = ({
   lang,
   codeChildren,
@@ -42,7 +44,7 @@ const CodeBar = React.memo(
           onClick={async () => {
             const codeString = codeRef.current?.textContent;
             if (codeString)
-              navigator.clipboard.writeText(codeString).then(() => {
+              copyToClipboard(codeString).then(() => {
                 setIsCopied(true);
                 setTimeout(() => setIsCopied(false), 3000);
               });
