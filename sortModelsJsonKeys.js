@@ -2,13 +2,53 @@ import fs from 'fs/promises';
 import https from 'https';
 import path from 'path';
 
+function processModelsInPlace(jsonData) {
+    // Remove unused models
+    jsonData.data = jsonData.data.filter(model => {
+        // Remove non-OpenAI models
+        if (!model.id.startsWith("openai/"))
+            return false;
+
+        // Remove unusable models
+        if (model.id.includes("-oss") ||
+            model.id.includes("-chat") ||
+            model.id.includes("-codex") ||
+            model.id.includes("-image") ||
+            model.id.includes("-audio") ||
+            model.id.includes("-search") ||
+            model.id.includes("-research") ||
+            model.id.includes(":extended"))
+            return false;
+
+        // Remove old models
+        if (!model.id.startsWith("openai/gpt-5") &&
+            !model.id.startsWith("openai/gpt-4.1"))
+            return false;
+
+        // Remove GPT-5.0 models because reasoning_effort: none is not supported
+        if (model.id == "openai/gpt-5" ||
+            model.id.startsWith("openai/gpt-5-"))
+            return false;
+
+        // Remove expensive models
+        const completion = parseFloat(model.pricing.completion);
+        const prompt = parseFloat(model.pricing.prompt);
+        if (completion >= 0.0001 || prompt >= 0.00001)
+            return false;
+
+        return true;
+    });
+
+    return jsonData;
+}
+
 // Function to recursively sort object keys
 function sortObjectKeys(obj) {
     if (Array.isArray(obj)) {
         // Check if the array contains objects with a 'name' field
         if (obj.length > 0 && typeof obj[0] === 'object' && 'name' in obj[0]) {
             // Sort the array by the 'name' field
-            obj.sort((a, b) => a.name.localeCompare(b.name));
+            obj.sort((a, b) => b.name.localeCompare(a.name));
         }
         return obj.map(sortObjectKeys);
     } else if (obj !== null && typeof obj === 'object') {
@@ -91,6 +131,9 @@ async function downloadAndProcessJson() {
         await fs.writeFile(inputFilePath, jsonString, 'utf8');
         console.log('Downloaded JSON has been saved to models.json');
         
+        // Modify models
+        processModelsInPlace(jsonData);
+
         // Sort the JSON data
         const sortedJsonData = sortObjectKeys(jsonData);
         
@@ -102,8 +145,8 @@ async function downloadAndProcessJson() {
         console.log('Sorted JSON has been saved to public/models.json');
         
         // Bump version in package.json
-        const newVersion = await bumpVersion();
-        console.log(`Package version updated to ${newVersion}`)
+        //const newVersion = await bumpVersion();
+        //console.log(`Package version updated to ${newVersion}`)
     } catch (err) {
         console.error('Error processing the file:', err);
     }
