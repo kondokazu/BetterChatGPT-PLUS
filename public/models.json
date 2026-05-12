@@ -14,6 +14,65 @@
         ],
         "tokenizer": "GPT"
       },
+      "canonical_slug": "openai/gpt-5.5-20260423",
+      "context_length": 1050000,
+      "created": 1777051893,
+      "default_parameters": {
+        "frequency_penalty": null,
+        "presence_penalty": null,
+        "repetition_penalty": null,
+        "temperature": null,
+        "top_k": null,
+        "top_p": null
+      },
+      "description": "GPT-5.5 is OpenAI’s frontier model designed for complex professional workloads, building on GPT-5.4 with stronger reasoning, higher reliability, and improved token efficiency on hard tasks. It features a 1M+ token...",
+      "expiration_date": null,
+      "hugging_face_id": "",
+      "id": "openai/gpt-5.5",
+      "knowledge_cutoff": "2025-12-01",
+      "links": {
+        "details": "/api/v1/models/openai/gpt-5.5-20260423/endpoints"
+      },
+      "name": "OpenAI: GPT-5.5",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.00003",
+        "input_cache_read": "0.0000005",
+        "prompt": "0.000005",
+        "web_search": "0.01"
+      },
+      "supported_parameters": [
+        "include_reasoning",
+        "max_completion_tokens",
+        "max_tokens",
+        "reasoning",
+        "response_format",
+        "seed",
+        "structured_outputs",
+        "tool_choice",
+        "tools"
+      ],
+      "supported_voices": null,
+      "top_provider": {
+        "context_length": 1050000,
+        "is_moderated": true,
+        "max_completion_tokens": 128000
+      }
+    },
+    {
+      "architecture": {
+        "input_modalities": [
+          "file",
+          "image",
+          "text"
+        ],
+        "instruct_type": null,
+        "modality": "text+image+file->text",
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "GPT"
+      },
       "canonical_slug": "openai/gpt-5.4-nano-20260317",
       "context_length": 400000,
       "created": 1773748187,
@@ -52,6 +111,7 @@
         "tool_choice",
         "tools"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 400000,
         "is_moderated": false,
@@ -110,6 +170,7 @@
         "tool_choice",
         "tools"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 400000,
         "is_moderated": false,
@@ -168,6 +229,7 @@
         "tool_choice",
         "tools"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 1050000,
         "is_moderated": false,
@@ -225,6 +287,7 @@
         "tool_choice",
         "tools"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 400000,
         "is_moderated": false,
@@ -282,6 +345,7 @@
         "tool_choice",
         "tools"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 400000,
         "is_moderated": false,
@@ -333,6 +397,7 @@
         "tools",
         "top_p"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 1047576,
         "is_moderated": true,
@@ -384,6 +449,7 @@
         "tools",
         "top_p"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 1047576,
         "is_moderated": true,
@@ -434,6 +500,7 @@
         "tools",
         "top_p"
       ],
+      "supported_voices": null,
       "top_provider": {
         "context_length": 1047576,
         "is_moderated": false,
