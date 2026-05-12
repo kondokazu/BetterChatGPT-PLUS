@@ -90,18 +90,6 @@ Download from [Releases](https://github.com/animalnots/BetterChatGPT-PLUS/releas
 4. **Install**: `yarn` or `npm install`
 5. **Launch**: `yarn dev` or `npm run dev`
 
-### Docker Compose
-
-1. Install [docker](https://www.docker.com/)
-2. **Build**: `docker compose build`
-3. **Start**: `docker compose up -d`
-4. **Stop**: `docker compose down`
-
-### Build Desktop App
-
-1. Install [yarn/npm](https://www.npmjs.com/)
-2. **Build (Windows)**: `yarn make --win`
-
 ## ⭐️ Star & Support
 
 [Star the repo](https://github.com/animalnots/BetterChatGPT-PLUS) to encourage development.
